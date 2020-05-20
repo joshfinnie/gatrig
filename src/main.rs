@@ -16,10 +16,10 @@ static POST_DATA: &str = r#"{"event_type": "rerun-workers"}"#;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    println!{"Starting event...\n"}
     let args = Cli::from_args();
 
     let token = var("GITHUB_AUTH_TOKEN").unwrap();
-    println!("GITHUB AUTH TOKEN: {}", token);
     let auth_token = format!("token {}", token);
 
     let https = HttpsConnector::new();
@@ -37,7 +37,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap();
     let res = client.request(req).await?;
 
-    println!("Status: {}", res.status());
-
+    if 204 == res.status() {
+        println!("Successfully triggered Github Action.")
+    } else {
+        println!("Something went wrong...")
+    }
     Ok(())
 }
