@@ -27,7 +27,7 @@ ARGS:
     <repo>
 ```
 
-*Note*: You do need to modify your Github Action workflow to trigger on a dispatch. This is done by adding one to you workflow `.yml`:
+**Note**: You do need to modify your Github Action workflow to trigger on a dispatch. This is done by adding one to you workflow `.yml`:
 
 ```
 name: Run on Repo Dispatch
