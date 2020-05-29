@@ -2,6 +2,41 @@
 
 `gatrig` is a small command line application used to trigger Github Actions.
 
+## Usage
+
+`gatrig` takes a Github Repository as an argument and sends a dispatch trigger to rerun your Github Actions Workflow.
+
+```bash
+$ gatrig joshfinnie/pushfile
+Starting event...
+
+Successfully triggered Github Action.
+```
+```bash
+$ gatrig --help
+gatrig 0.1.0
+
+USAGE:
+    gatrig <repo>
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+ARGS:
+    <repo>
+```
+
+*Note*: You do need to modify your Github Action workflow to trigger on a dispatch. This is done by adding one to you workflow `.yml`:
+
+```
+name: Run on Repo Dispatch
+on:
+  repository_dispatch:
+  push:
+...
+```
+
 ## Installation using binaries
 
 Download the executable from the [Github Releases page](https://github.com/joshfinnie/gatrig/releases), and move it into your path:
